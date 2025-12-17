@@ -1,0 +1,50 @@
+#Cek Duplikat: kf_inventory_table
+SELECT 
+  transaction_id,
+  product_id,
+  branch_id,
+  customer_name,
+  date,
+  price,
+  discount_percentage,
+  rating,
+  COUNT(*) as num_duplicate_rows
+FROM `kimia_farma.kf_final_transaction`
+GROUP BY 1,2,3,4,5,6,7,8
+HAVING num_duplicate_rows > 1;
+
+#Cek Duplikat: kf_product
+SELECT 
+  product_id, 
+  product_name, 
+  product_category, 
+  price, 
+  COUNT(*) as num_duplicate_rows
+FROM `kimia_farma.kf_product`
+GROUP BY 1, 2, 3, 4
+HAVING num_duplicate_rows > 1;
+
+#Cek Duplikat: kf_inventory
+SELECT 
+  inventory_id,
+  branch_id,
+  product_id,
+  product_name,
+  opname_stock,
+  COUNT(*) as num_duplicate_rows
+FROM `kimia_farma.kf_inventory`
+GROUP BY 1, 2, 3, 4, 5
+HAVING num_duplicate_rows > 1;
+
+#Cek Duplikat: kf_kantor_cabang
+SELECT 
+  branch_id,
+  branch_category,
+  branch_name,
+  kota,
+  provinsi,
+  rating,
+  COUNT(*) as num_duplicate_rows
+FROM `kimia_farma.kf_kantor_cabang`
+GROUP BY 1, 2, 3, 4, 5, 6
+HAVING num_duplicate_rows > 1;
