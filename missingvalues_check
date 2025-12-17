@@ -1,0 +1,30 @@
+SELECT 
+  COUNTIF(transaction_id IS NULL) AS transaction_id_null,
+  COUNTIF(date IS NULL) AS date_null,
+  COUNTIF(branch_id IS NULL) AS branch_id_null,
+  COUNTIF(product_id IS NULL) AS product_id_null,
+  COUNTIF(price IS NULL) AS price_null,
+  COUNTIF(discount_percentage IS NULL) AS discount_null,
+  COUNTIF(rating IS NULL) AS rating_null
+FROM `kimia_farma.kf_final_transaction`;
+
+SELECT 
+  COUNTIF(product_id IS NULL) AS product_id_null,
+  COUNTIF(product_name IS NULL) AS product_name_null,
+  COUNTIF(product_category IS NULL) AS category_null,
+  COUNTIF(price IS NULL) AS price_null
+FROM `kimia_farma.kf_product`;
+
+SELECT 
+  COUNTIF(branch_id IS NULL) AS branch_id_null,
+  COUNTIF(branch_name IS NULL) AS branch_name_null,
+  COUNTIF(kota IS NULL) AS kota_null,
+  COUNTIF(provinsi IS NULL) AS provinsi_null
+FROM `kimia_farma.kf_kantor_cabang`;
+
+SELECT 
+  COUNTIF(inventory_id IS NULL) AS inventory_id_null,
+  COUNTIF(branch_id IS NULL) AS branch_id_null,
+  COUNTIF(product_id IS NULL) AS product_id_null,
+  COUNTIF(opname_stock IS NULL) AS stock_null
+FROM `kimia_farma.kf_inventory`;
