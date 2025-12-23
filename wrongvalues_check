@@ -1,0 +1,38 @@
+Di sini kita mencari transaksi "mustahil" seperti harga nol, diskon tidak masuk akal, atau tanggal di masa depan.
+
+SELECT 
+  'Transaksi Anomali' AS kategori,
+  COUNTIF(price <= 0) AS harga_nol_atau_minus,
+  COUNTIF(discount_percentage > 1.0) AS diskon_diatas_100_persen,
+  COUNTIF(rating < 1 OR rating > 5) AS rating_diluar_skala,
+  COUNTIF(date > CURRENT_DATE()) AS tanggal_masa_depan
+FROM `kimia_farma.kf_final_transaction`;
+
+Kita mengecek apakah ada produk yang terdaftar namun tidak memiliki harga atau harganya terlalu rendah/tinggi yang mencurigakan.
+
+SELECT 
+  product_id,
+  product_name,
+  price
+FROM `kimia_farma.kf_product`
+WHERE price <= 0 
+   OR price > 10000000; -- Asumsi jika ada obat di atas 10jt perlu dicek manual
+
+Anomali tersering pada stok adalah nilai negatif (stok bocor/salah input).
+
+SELECT 
+  inventory_id,
+  branch_id,
+  product_id,
+  opname_stock
+FROM `kimia_farma.kf_inventory`
+WHERE opname_stock < 0; -- Stok tidak boleh minus
+
+Pada tabel cabang, kita pastikan rating rata-rata cabang masih dalam standar perusahaan (skala 1-5).
+
+SELECT 
+  branch_id,
+  branch_name,
+  rating
+FROM `kimia_farma.kf_kantor_cabang`
+WHERE rating < 1 OR rating > 5;
