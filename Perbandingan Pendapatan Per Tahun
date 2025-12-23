@@ -1,23 +1,5 @@
 Perbandingan Pendapatan Kimia Farma dari tahun ke tahun (2020-2023)
 
-START
-  1. AMBIL data dari tabel_analisa
-  2. FILTER data hanya untuk tahun 2020 sampai 2023
-  3. KELOMPOKKAN data berdasarkan TAHUN
-  4. HITUNG TOTAL(nett_sales) dan TOTAL(nett_profit) untuk tiap tahun
-  5. SIMPAN hasil hitungan tersebut ke dalam tabel sementara (temporary_table)
-
-  6. DARI tabel sementara tersebut, UNTUK SETIAP BARIS:
-     a. HITUNG Selisih = Total_Sales - Total_Profit
-     b. AMBIL Total_Sales dari tahun sebelumnya (menggunakan LAG)
-     c. HITUNG % Pertumbuhan Sales = ((Sales_Sekarang - Sales_Lalu) / Sales_Lalu) * 100
-     d. AMBIL Total_Profit dari tahun sebelumnya (menggunakan LAG)
-     e. HITUNG % Pertumbuhan Profit = ((Profit_Sekarang - Profit_Lalu) / Profit_Lalu) * 100
-
-  7. TAMPILKAN semua kolom hasil perhitungan
-  8. URUTKAN berdasarkan Tahun (A-Z)
-END
-
 WITH yearly_data AS (
     -- Langkah 1: Agregasi data per tahun
     SELECT
