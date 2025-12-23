@@ -1,0 +1,35 @@
+Perbandingan Pendapatan Kimia Farma dari tahun ke tahun (2020-2023)
+
+WITH yearly_data AS (
+    -- Langkah 1: Agregasi data per tahun
+    SELECT
+        EXTRACT(YEAR FROM date) AS year,
+        SUM(nett_sales) AS total_nett_sales,
+        SUM(nett_profit) AS total_nett_profit
+    FROM `kimia_farma.tabel_analisa`
+    WHERE EXTRACT(YEAR FROM date) BETWEEN 2020 AND 2023
+    GROUP BY 1
+)
+SELECT
+    year,
+    total_nett_sales,
+    total_nett_profit,
+    -- 1. Selisih antara Sales dan Profit (Biaya/Operasional)
+    (total_nett_sales - total_nett_profit) AS gap_sales_profit,
+    
+    -- 2. Growth Percentage Nett Sales
+    ROUND(((total_nett_sales - LAG(total_nett_sales) OVER (ORDER BY year)) / 
+    NULLIF(LAG(total_nett_sales) OVER (ORDER BY year), 0)) * 100, 2) AS sales_growth_pct,
+    
+    -- 3. Growth Percentage Nett Profit
+    ROUND(((total_nett_profit - LAG(total_nett_profit) OVER (ORDER BY year)) / 
+    NULLIF(LAG(total_nett_profit) OVER (ORDER BY year), 0)) * 100, 2) AS profit_growth_pct
+FROM yearly_data
+ORDER BY year;
+
+Penjelasan Kolom Baru:
+gap_sales_profit: Menunjukkan seberapa besar biaya operasional, HPP, dan diskon gabungan (selisih antara omzet kotor dan profit bersih).
+
+sales_growth_pct: Persentase kenaikan/penurunan pendapatan dibanding tahun lalu.
+
+profit_growth_pct: Persentase kenaikan/penurunan keuntungan dibanding tahun lalu.
