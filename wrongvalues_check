@@ -36,3 +36,28 @@ SELECT
   rating
 FROM `kimia_farma.kf_kantor_cabang`
 WHERE rating < 1 OR rating > 5;
+
+#Cek apakah ada branch_id ada yang tidak sesuai dengan branch_name, kota, dan provinsinya
+START
+  1. BUKA tabel kf_kantor_cabang.
+  2. KELOMPOKKAN data berdasarkan branch_id.
+  3. HITUNG jumlah variasi unik untuk:
+     - Nama Cabang (branch_name)
+     - Kota
+     - Provinsi
+  4. GABUNGKAN semua variasi yang ditemukan ke dalam teks (STRING_AGG) agar mudah dibaca.
+  5. FILTER hasil:
+     - Tampilkan hanya jika ada ID yang punya lebih dari 1 Nama, ATAU lebih dari 1 Kota, ATAU lebih dari 1 Provinsi.
+  6. TAMPILKAN baris yang bermasalah tersebut.
+END
+SELECT 
+    branch_id, 
+    COUNT(DISTINCT branch_name) AS jml_nama,
+    COUNT(DISTINCT kota) AS jml_kota,
+    COUNT(DISTINCT provinsi) AS jml_provinsi,
+    STRING_AGG(DISTINCT branch_name, ' | ') AS daftar_nama,
+    STRING_AGG(DISTINCT kota, ' | ') AS daftar_kota,
+    STRING_AGG(DISTINCT provinsi, ' | ') AS daftar_provinsi
+FROM `kimia_farma.kf_kantor_cabang`
+GROUP BY 1
+HAVING jml_nama > 1 OR jml_kota > 1 OR jml_provinsi > 1;
