@@ -1,0 +1,16 @@
+START
+  1. AMBIL data dari kolom 'provinsi'.
+  2. HITUNG JUMLAH (SUM) dari seluruh nilai di kolom 'nett_sales'.
+  3. GABUNGKAN (GROUP) baris berdasarkan nama 'provinsi' yang sama.
+  4. URUTKAN hasil 'total_pendapatan' dari angka PALING TINGGI ke rendah.
+  5. AMBIL hanya 10 data teratas.
+  6. TAMPILKAN hasil akhir.
+END
+
+SELECT 
+    provinsi,
+    SUM(nett_sales) AS total_nett_sales
+FROM `kimia_farma.tabel_analisa`
+GROUP BY 1
+ORDER BY total_nett_sales DESC
+LIMIT 10;
