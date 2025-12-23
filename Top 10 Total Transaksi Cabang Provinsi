@@ -1,0 +1,15 @@
+START
+  1. AMBIL kolom 'provinsi'.
+  2. HITUNG seluruh baris 'transaction_id'.
+  3. GABUNGKAN (GROUP) semua baris yang memiliki nama 'provinsi' yang sama menjadi satu baris.
+  4. URUTKAN total_transaksi dari yang TERBESAR ke yang TERKECIL.
+  5. TAMPILKAN hanya 10 provinsi teratas.
+END
+
+SELECT 
+    provinsi,
+    COUNT(transaction_id) AS total_transaksi
+FROM `kimia_farma.tabel_analisa`
+GROUP BY 1
+ORDER BY total_transaksi DESC
+LIMIT 10;
