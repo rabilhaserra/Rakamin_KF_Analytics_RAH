@@ -1,0 +1,12 @@
+SELECT 
+    customer_name,
+    COUNT(DISTINCT transaction_id) AS total_transaksi,
+    SUM(nett_sales) AS total_pembelian,
+    SUM(nett_profit) AS total_profit_kontribusi
+FROM 
+    `kimia_farma.tabel_analisa`
+GROUP BY 
+    customer_name
+ORDER BY 
+    total_transaksi DESC
+LIMIT 5;
