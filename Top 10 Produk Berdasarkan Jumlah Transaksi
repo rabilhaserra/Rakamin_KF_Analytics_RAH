@@ -1,3 +1,15 @@
+#Melihat Jumlah Produk per Kategori
+SELECT 
+    product_name AS kategori_produk,
+    COUNT(DISTINCT product_id) AS jumlah_produk
+FROM 
+    `kimia_farma.kf_product`
+GROUP BY 
+    product_name
+ORDER BY 
+    jumlah_produk DESC;
+
+#Mencari Kategori Produk Favorit
 SELECT 
     product_name,
     SUM(nett_sales) AS total_revenue,
