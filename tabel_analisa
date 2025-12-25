@@ -26,7 +26,7 @@ SELECT
     (t.price * (1 - t.discount_percentage)) AS nett_sales,
 
     -- Menghitung Nett Profit
-    (t.price * CASE 
+    (t.price * (1 - t.discount_percentage) * CASE 
             WHEN t.price <= 50000 THEN 0.10
             WHEN t.price > 50000 AND t.price <= 100000 THEN 0.15
             WHEN t.price > 100000 AND t.price <= 300000 THEN 0.20
