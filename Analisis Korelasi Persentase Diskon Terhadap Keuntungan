@@ -1,0 +1,14 @@
+SELECT 
+    DISTINCT discount_percentage
+FROM 
+    `kimia_farma.tabel_analisa`
+ORDER BY 
+    discount_percentage ASC;
+
+SELECT 
+    CORR(discount_percentage, nett_profit) AS korelasi_diskon_profit
+FROM 
+    `kimia_farma.tabel_analisa`;
+
+
+
