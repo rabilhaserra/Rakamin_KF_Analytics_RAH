@@ -1,0 +1,11 @@
+SELECT 
+    FORMAT_DATE('%B', date) AS nama_bulan,
+    EXTRACT(MONTH FROM date) AS urutan_bulan, -- Digunakan untuk sorting agar Januari di awal
+    EXTRACT(YEAR FROM date) AS tahun,
+    COUNT(DISTINCT transaction_id) AS total_transaksi
+FROM 
+    `kimia_farma.tabel_analisa`
+GROUP BY 
+    1, 2, 3
+ORDER BY 
+    urutan_bulan ASC, tahun ASC;
