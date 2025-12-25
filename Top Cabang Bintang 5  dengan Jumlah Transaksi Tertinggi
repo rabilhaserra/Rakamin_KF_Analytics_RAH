@@ -1,0 +1,15 @@
+SELECT 
+    branch_id, 
+    branch_name, 
+    provinsi, 
+    kota,
+    COUNT(DISTINCT transaction_id) AS total_transaksi,
+    ROUND(AVG(rating_cabang), 2) AS rata_rata_rating
+FROM 
+    `kimia_farma.tabel_analisa`
+GROUP BY 
+    1, 2, 3, 4
+ORDER BY 
+    rata_rata_rating DESC,
+    total_transaksi DESC 
+LIMIT 5;
