@@ -1,0 +1,7 @@
+SELECT 
+    product_name, 
+    -- Menghitung persentase kontribusi terhadap total keseluruhan
+    ROUND(SUM(nett_profit) / SUM(SUM(nett_profit)) OVER() * 100, 2) AS profit_contribution_percentage
+FROM `kimia_farma.tabel_analisa`
+GROUP BY 1
+ORDER BY profit_contribution_percentage DESC;
