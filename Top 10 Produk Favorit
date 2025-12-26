@@ -1,0 +1,13 @@
+SELECT 
+    product_id,
+    product_name,
+    COUNT(transaction_id) AS jumlah_transaksi,
+    SUM(nett_profit) AS total_profit
+FROM 
+    `kimia_farma.tabel_analisa`
+GROUP BY 
+    product_id, product_name
+ORDER BY 
+    jumlah_transaksi DESC,
+    total_profit DESC
+LIMIT 10;
