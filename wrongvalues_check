@@ -1,4 +1,16 @@
 #Di sini kita mencari transaksi "mustahil" seperti harga nol, diskon tidak masuk akal, atau tanggal di masa depan.
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_final_transaction'
+    TETAPKAN kategori AS 'Transaksi Anomali'
+    
+    HITUNG jumlah baris DI MANA:
+        price <= 0                      -> SIMPAN SEBAGAI harga_nol_atau_minus
+        discount_percentage > 1.0       -> SIMPAN SEBAGAI diskon_diatas_100_persen
+        rating < 1 ATAU rating > 5      -> SIMPAN SEBAGAI rating_diluar_skala
+        date > TANGGAL_HARI_INI         -> SIMPAN SEBAGAI tanggal_masa_depan
+    
+    TAMPILKAN kategori DAN semua hasil hitungan_anomali
+END
 
 SELECT 
   'Transaksi Anomali' AS kategori,
@@ -9,6 +21,16 @@ SELECT
 FROM `kimia_farma.kf_final_transaction`;
 
 #Kita mengecek apakah ada produk yang terdaftar namun tidak memiliki harga atau harganya terlalu rendah/tinggi yang mencurigakan.
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_product'
+    
+    FILTER dataset DI MANA:
+        price <= 0 
+        ATAU 
+        price > 10000000 (Sepuluh Juta)
+    
+    TAMPILKAN product_id, product_name, DAN price UNTUK baris yang lolos filter
+END
 
 SELECT 
   product_id,
@@ -19,6 +41,14 @@ WHERE price <= 0
    OR price > 10000000; -- Asumsi jika ada obat di atas 10jt perlu dicek manual
 
 #Anomali tersering pada stok adalah nilai negatif (stok bocor/salah input).
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_inventory'
+    
+    FILTER dataset DI MANA:
+        opname_stock < 0
+    
+    TAMPILKAN inventory_id, branch_id, product_id, DAN opname_stock
+END
 
 SELECT 
   inventory_id,
@@ -29,6 +59,16 @@ FROM `kimia_farma.kf_inventory`
 WHERE opname_stock < 0; -- Stok tidak boleh minus
 
 #Pada tabel cabang, kita pastikan rating rata-rata cabang masih dalam standar perusahaan (skala 1-5).
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_kantor_cabang'
+    
+    FILTER dataset DI MANA:
+        rating < 1 
+        ATAU 
+        rating > 5
+    
+    TAMPILKAN branch_id, branch_name, DAN rating
+END
 
 SELECT 
   branch_id,
