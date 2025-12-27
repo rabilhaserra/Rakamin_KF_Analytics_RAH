@@ -1,3 +1,19 @@
+#Prosedur cek null masing2 tabel
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_final_transaction'
+    
+    HITUNG jumlah baris DI MANA:
+        transaction_id ADALAH NULL  -> SIMPAN SEBAGAI transaction_id_null
+        date ADALAH NULL            -> SIMPAN SEBAGAI date_null
+        branch_id ADALAH NULL       -> SIMPAN SEBAGAI branch_id_null
+        product_id ADALAH NULL      -> SIMPAN SEBAGAI product_id_null
+        price ADALAH NULL           -> SIMPAN SEBAGAI price_null
+        discount_percentage IS NULL -> SIMPAN SEBAGAI discount_null
+        rating ADALAH NULL          -> SIMPAN SEBAGAI rating_null
+    
+    TAMPILKAN semua hasil hitungan_null
+END
+
 SELECT 
   COUNTIF(transaction_id IS NULL) AS transaction_id_null,
   COUNTIF(date IS NULL) AS date_null,
@@ -8,6 +24,18 @@ SELECT
   COUNTIF(rating IS NULL) AS rating_null
 FROM `kimia_farma.kf_final_transaction`;
 
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_product'
+    
+    HITUNG jumlah baris DI MANA:
+        product_id ADALAH NULL       -> SIMPAN SEBAGAI product_id_null
+        product_name ADALAH NULL     -> SIMPAN SEBAGAI product_name_null
+        product_category ADALAH NULL -> SIMPAN SEBAGAI category_null
+        price ADALAH NULL            -> SIMPAN SEBAGAI price_null
+    
+    TAMPILKAN semua hasil hitungan_null
+END
+
 SELECT 
   COUNTIF(product_id IS NULL) AS product_id_null,
   COUNTIF(product_name IS NULL) AS product_name_null,
@@ -15,12 +43,36 @@ SELECT
   COUNTIF(price IS NULL) AS price_null
 FROM `kimia_farma.kf_product`;
 
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_kantor_cabang'
+    
+    HITUNG jumlah baris DI MANA:
+        branch_id ADALAH NULL   -> SIMPAN SEBAGAI branch_id_null
+        branch_name ADALAH NULL -> SIMPAN SEBAGAI branch_name_null
+        kota ADALAH NULL        -> SIMPAN SEBAGAI kota_null
+        provinsi ADALAH NULL    -> SIMPAN SEBAGAI provinsi_null
+    
+    TAMPILKAN semua hasil hitungan_null
+END
+
 SELECT 
   COUNTIF(branch_id IS NULL) AS branch_id_null,
   COUNTIF(branch_name IS NULL) AS branch_name_null,
   COUNTIF(kota IS NULL) AS kota_null,
   COUNTIF(provinsi IS NULL) AS provinsi_null
 FROM `kimia_farma.kf_kantor_cabang`;
+
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_inventory'
+    
+    HITUNG jumlah baris DI MANA:
+        inventory_id ADALAH NULL -> SIMPAN SEBAGAI inventory_id_null
+        branch_id ADALAH NULL    -> SIMPAN SEBAGAI branch_id_null
+        product_id ADALAH NULL   -> SIMPAN SEBAGAI product_id_null
+        opname_stock ADALAH NULL -> SIMPAN SEBAGAI stock_null
+    
+    TAMPILKAN semua hasil hitungan_null
+END
 
 SELECT 
   COUNTIF(inventory_id IS NULL) AS inventory_id_null,
