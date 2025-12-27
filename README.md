@@ -57,5 +57,5 @@ Data dari BigQuery dihubungkan ke **Looker Studio** untuk divisualisasikan dalam
 ---
 
 ## 📧 Kontak
-Dibuat oleh: [Nama Anda]  
-LinkedIn: [Link LinkedIn Anda]
+Dibuat oleh: [Rabiyatul Adawiyah Haserra]  
+LinkedIn: [https://www.linkedin.com/in/rabil-haserra/]
