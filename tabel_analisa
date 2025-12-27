@@ -1,3 +1,29 @@
+START
+INISIALISASI Tabel Baru: 'kimia_farma.tabel_analisa'
+2.  GABUNGKAN Data dari Table Sumber Utama:
+
+3.  PROSES Data Dasar:
+    - Ambil identitas transaksi, tanggal, dan nama pelanggan.
+    - Ambil detail lokasi (nama cabang, kota, provinsi).
+    - Ambil Rating Cabang.
+    - Ambil detail produk (nama produk, harga asli, diskon)
+
+4.  Menentukan Persentase Gross Laba:
+    - JIKA Harga <= 50.000, MAKA Laba = 10%
+    - JIKA Harga > 50.000 DAN <= 100.000, MAKA Laba = 15%
+    - JIKA Harga > 100.000 DAN <= 300.000, MAKA Laba = 20%
+    - JIKA Harga > 300.000 DAN <= 500.000, MAKA Laba = 25%
+    - SELAIN ITU (Harga > 500.000), MAKA Laba = 30%
+
+5.  KALKULASI Metrik:
+    - Hitung 'Nett Sales': harga_asli * (1 - persentase_diskon).
+    - Hitung 'Nett Profit': nett_sales * persentase_gross_laba
+
+6.  Ambil Rating Transaksi.
+
+7.  SIMPAN Seluruh Hasil ke dalam 'tabel_analisa'.
+END
+
 CREATE TABLE `kimia_farma.tabel_analisa` AS
 SELECT 
     t.transaction_id,
