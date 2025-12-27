@@ -1,4 +1,17 @@
-#Cek Duplikat: kf_inventory_table
+
+#Cek Duplikat: kf_final_transaction
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_final_transaction'
+    
+    KELOMPOKKAN dataset BERDASARKAN:
+        transaction_id, product_id, branch_id, customer_name, 
+        date, price, discount_percentage, rating
+    
+    HITUNG jumlah kemunculan SETIAP kelompok SEBAGAI num_duplicate_rows
+    
+    TAMPILKAN baris JIKA num_duplicate_rows > 1
+END
+
 SELECT 
   transaction_id,
   product_id,
@@ -14,6 +27,17 @@ GROUP BY 1,2,3,4,5,6,7,8
 HAVING num_duplicate_rows > 1;
 
 #Cek Duplikat: kf_product
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_product'
+    
+    KELOMPOKKAN dataset BERDASARKAN:
+        product_id, product_name, product_category, price
+    
+    HITUNG jumlah kemunculan SETIAP kelompok SEBAGAI num_duplicate_rows
+    
+    TAMPILKAN baris JIKA num_duplicate_rows > 1
+END
+
 SELECT 
   product_id, 
   product_name, 
@@ -25,6 +49,17 @@ GROUP BY 1, 2, 3, 4
 HAVING num_duplicate_rows > 1;
 
 #Cek Duplikat: kf_inventory
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_inventory'
+    
+    KELOMPOKKAN dataset BERDASARKAN:
+        inventory_id, branch_id, product_id, product_name, opname_stock
+    
+    HITUNG jumlah kemunculan SETIAP kelompok SEBAGAI num_duplicate_rows
+    
+    TAMPILKAN baris JIKA num_duplicate_rows > 1
+END
+
 SELECT 
   inventory_id,
   branch_id,
@@ -37,6 +72,17 @@ GROUP BY 1, 2, 3, 4, 5
 HAVING num_duplicate_rows > 1;
 
 #Cek Duplikat: kf_kantor_cabang
+START
+    DEFINISIKAN dataset AS 'kimia_farma.kf_kantor_cabang'
+    
+    KELOMPOKKAN dataset BERDASARKAN:
+        branch_id, branch_category, branch_name, kota, provinsi, rating
+    
+    HITUNG jumlah kemunculan SETIAP kelompok SEBAGAI num_duplicate_rows
+    
+    TAMPILKAN baris JIKA num_duplicate_rows > 1
+END
+
 SELECT 
   branch_id,
   branch_category,
