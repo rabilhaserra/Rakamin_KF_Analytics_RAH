@@ -11,6 +11,7 @@ Proyek ini bertujuan untuk menganalisis performa bisnis Kimia Farma melalui peng
 Untuk penjelasan mendalam mengenai proses pengerjaan dan interpretasi data dari proyek ini, silakan tonton video berikut:
 [![Tonton Video Penjelasan](https://img.shields.io/badge/YouTube-Video%20Penjelasan-red?style=for-the-badge&logo=youtube)](https://youtu.be/3O-2ABDQSA8)
 
+## Slide Presentasi
 [![Slide Presentasi](https://img.shields.io/badge/Google_Slides-Presentasi-orange?style=for-the-badge&logo=googleslides)](https://docs.google.com/presentation/d/124_5WatEMmosDab2fFZ46_EPiquPU8mW/edit?usp=sharing&ouid=100581287159439651571&rtpof=true&sd=true)
 
 --
