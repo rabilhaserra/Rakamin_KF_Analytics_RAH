@@ -7,6 +7,10 @@ Proyek ini bertujuan untuk menganalisis performa bisnis Kimia Farma melalui peng
 ## 📊 Dashboard Link
 [Lihat Dashboard Interaktif di Looker Studio](https://lookerstudio.google.com/s/vn0tgsP6iL8)
 
+## 📽️ Video Penjelasan
+Untuk penjelasan mendalam mengenai proses pengerjaan dan interpretasi data dari proyek ini, silakan tonton video berikut:
+[![Tonton Video Penjelasan](https://img.shields.io/badge/YouTube-Video%20Penjelasan-red?style=for-the-badge&logo=youtube)](https://youtu.be/3O-2ABDQSA8)
+
 ---
 
 ## 🛠️ Metodologi Analisis (Framework OSEMN)
